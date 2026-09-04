@@ -16,7 +16,7 @@ public class PeliculaService {
     @Autowired
     private PeliculaRepository peliculaRepository;
 
-    public List<Pelicula> findAll() {
+    public List<Pelicula> obtenerTodas() {
         return peliculaRepository.findAll();
     }
 
@@ -24,7 +24,7 @@ public class PeliculaService {
         return peliculaRepository.findById(id);
     }
 
-    public Pelicula save(Pelicula pelicula) {
+    public Pelicula guardar(Pelicula pelicula) {
         return peliculaRepository.save(pelicula);
     }
 
