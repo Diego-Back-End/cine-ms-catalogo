@@ -1,13 +1,13 @@
 package com.cine.ms_catalogo.repositories;
 
-import com.cine.ms_catalogo.entities.Genero;
+import com.cine.ms_catalogo.entities.Clasificacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface GeneroRepository extends JpaRepository<Genero, Long> {
-    Optional<Genero> findByNombreIgnoreCase(String nombre);
+public interface ClasificacionRepository extends JpaRepository<Clasificacion, Long> {
+    Optional<Clasificacion> findByNombreIgnoreCase(String nombre);
     boolean existsByNombreIgnoreCase(String nombre);
 }
