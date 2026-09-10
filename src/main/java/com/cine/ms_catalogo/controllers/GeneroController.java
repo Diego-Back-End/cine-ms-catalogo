@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/generos")
-@CrossOrigin(origins = "http://localhost:5173")
 public class GeneroController {
 
     @Autowired

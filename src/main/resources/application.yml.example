@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    password: 
+    password: CHANGEME
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,8 +16,9 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://login.microsoftonline.com/410d54a1-556a-4966-b3c9-cbadacd83c3c/v2.0
-          audiences: api://0fee95e5-3012-4ff7-9c0e-d621a7a081fe
+          # Reemplaza {tenant-id} por VITE_AZURE_AUTHORITY y {client-id} por VITE_AZURE_CLIENT_ID
+          issuer-uri: https://login.microsoftonline.com/{tenant-id}/v2.0
+          audiences: api://{client-id}
 
 server:
   port: 8081
