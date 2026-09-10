@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: ms-catalogo
+  datasource:
+    url: jdbc:mysql://localhost:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: CHANGEME
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Reemplaza {tenant-id} por VITE_AZURE_AUTHORITY y {client-id} por VITE_AZURE_CLIENT_ID
+          issuer-uri: https://login.microsoftonline.com/{tenant-id}/v2.0
+          audiences: api://{client-id}
+
+server:
+  port: 8081

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ms-catalogo
+  datasource:
+    url: jdbc:mysql://localhost:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://login.microsoftonline.com/410d54a1-556a-4966-b3c9-cbadacd83c3c/v2.0
+          audiences: api://0fee95e5-3012-4ff7-9c0e-d621a7a081fe
+
+server:
+  port: 8081
