@@ -2,9 +2,9 @@ spring:
   application:
     name: ms-catalogo
   datasource:
-    url: jdbc:mysql://localhost:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://cine-db.cpwztrhhcge6.us-east-1.rds.amazonaws.com:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    password: 
+    password: Cine2026$
   jpa:
     hibernate:
       ddl-auto: update
