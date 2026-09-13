@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // Lecturas públicas - rol de /public/hola de la guía
                         .requestMatchers(HttpMethod.GET, "/api/peliculas", "/api/peliculas/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/generos", "/api/generos/**").permitAll()
