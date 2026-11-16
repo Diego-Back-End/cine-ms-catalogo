@@ -86,11 +86,15 @@ public class PeliculaService {
         pelicula.setEstado(req.estado().trim());
         pelicula.setImagenUrl(req.poster() != null ? req.poster().trim() : null);
 
-        // Genero: soporta múltiples a futuro, hoy uno
-        Genero genero = generoRepository.findByNombreIgnoreCase(req.genero().trim())
-                .orElseGet(() -> generoRepository.save(new Genero(null, req.genero().trim())));
+        // Géneros: uno o varios, se crean si no existen
+        List<String> generosNombres = req.generos() == null ? List.of() : req.generos();
         pelicula.getGeneros().clear();
-        pelicula.getGeneros().add(genero);
+        for (String nombre : generosNombres) {
+            if (nombre == null || nombre.trim().isEmpty()) continue;
+            Genero genero = generoRepository.findByNombreIgnoreCase(nombre.trim())
+                    .orElseGet(() -> generoRepository.save(new Genero(null, nombre.trim())));
+            pelicula.getGeneros().add(genero);
+        }
 
         // Clasificación: tabla dinámica, sin delete
         Clasificacion clasif = clasificacionRepository.findByNombreIgnoreCase(req.clasificacion().trim())

@@ -21,6 +21,9 @@ public class Funcion {
     @Column(name = "sala_id", nullable = false)
     private Long salaId;
 
+    @Column(name = "sucursal_id", nullable = false)
+    private Long sucursalId;
+
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 

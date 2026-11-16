@@ -54,6 +54,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/peliculas/**").hasAuthority("super_admin")
                         .requestMatchers(HttpMethod.POST, "/api/generos", "/api/generos/**").hasAuthority("super_admin")
                         .requestMatchers(HttpMethod.POST, "/api/clasificaciones", "/api/clasificaciones/**").hasAuthority("super_admin")
+                        // Sucursales: solo super_admin puede crear/editar; branch_admin lee las suyas
+                        .requestMatchers(HttpMethod.GET, "/api/sucursales").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/sucursales").hasAuthority("super_admin")
+                        .requestMatchers(HttpMethod.PUT, "/api/sucursales/**").hasAuthority("super_admin")
+                        // Funciones: super_admin y branch_admin pueden leer/crear
+                        .requestMatchers(HttpMethod.GET, "/api/funciones").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/funciones").hasAnyAuthority("branch_admin")
+                        .requestMatchers(HttpMethod.POST, "/api/funciones/limpiar-vencidas").hasAnyAuthority("branch_admin")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
@@ -76,7 +84,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "https://diego-back-end.github.io"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://diego-back-end.github.io", "http://localhost:5174"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("*"));
