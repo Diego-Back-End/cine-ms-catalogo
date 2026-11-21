@@ -2,9 +2,9 @@ spring:
   application:
     name: ms-catalogo
   datasource:
-    url: jdbc:mysql://cine-db.cpwztrhhcge6.us-east-1.rds.amazonaws.com:3306/cine_catalogo?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: Cine2026$
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,8 +16,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://login.microsoftonline.com/410d54a1-556a-4966-b3c9-cbadacd83c3c/v2.0
-          audiences: api://0fee95e5-3012-4ff7-9c0e-d621a7a081fe
+          issuer-uri: ${COGNITO_ISSUER_URI}
+          audiences: ${COGNITO_CLIENT_ID}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
 server:
   port: 8081

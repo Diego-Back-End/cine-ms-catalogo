@@ -62,6 +62,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/funciones").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/funciones").hasAnyAuthority("branch_admin")
                         .requestMatchers(HttpMethod.POST, "/api/funciones/limpiar-vencidas").hasAnyAuthority("branch_admin")
+                        // Tópicos Kafka: administración solo super_admin
+                        .requestMatchers(HttpMethod.POST, "/api/topicos", "/api/topicos/**").hasAuthority("super_admin")
+                        .requestMatchers(HttpMethod.PUT, "/api/topicos/**").hasAuthority("super_admin")
+                        .requestMatchers(HttpMethod.DELETE, "/api/topicos/**").hasAuthority("super_admin")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
